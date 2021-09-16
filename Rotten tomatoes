@@ -2,18 +2,18 @@
 
 1. Quais são os 10 filmes mais apreciados pelo público?
 
-                Filme                 Nota do público
-                The Dark Knight		    96
-                50/50			            93
-                Inception		          93
-                Warrior		          	93
-                Avatar 		          	92
-                Iron Man	          	91
-                Star Trek 	        	91
-                The Artist	        	91
+                Filme                 	Nota do público
+                The Dark Knight		96
+                50/50			93
+                Inception		93
+                Warrior		        93
+                Avatar 		        92
+                Iron Man	        91
+                Star Trek 	        91
+                The Artist	        91
                 The Bourne Ultimatum	91
-                The Help		          91
-                Gran Torino	        	90
+                The Help		91
+                Gran Torino	        90
                 
 
 SELECT
@@ -27,16 +27,16 @@ SELECT
 2. Quais são os 10 filmes mais apreciados pela crítica especializada?
   
                 Filme                   Nota da crítica
-                The Artist		          97
-                The Hurt Locker 	      97
-                The Muppets		          97
-                True Grit		            96
-                Moneyball		            95
+                The Artist		97
+                The Hurt Locker 	97
+                The Muppets		97
+                True Grit		96
+                Moneyball		95
                 No Country for Old Men	95
-                An Education	        	94
-                Iron Man		            94
-                Juno			              94
-                Star Trek 	          	94
+                An Education	        94
+                Iron Man		94
+                Juno			94
+                Star Trek 	        94
                 
 
 SELECT
@@ -49,16 +49,16 @@ SELECT
 3. Quais são os 10 filmes mais odiados pelo público?
 
                 Filme                           Nota do público
-                Paranormal Activity 2		         0
-                Something Borrowed		           0
-                Skyline				                  19
-                Stone			                    	20
-                The Haunting of Molly Hartley	  22
-                Jonah Hex			                  24
-                Trespass			                  24
-                Shark Night 3D		            	25
+                Paranormal Activity 2		0
+                Something Borrowed		0
+                Skyline				19
+                Stone			        20
+                The Haunting of Molly Hartley	22
+                Jonah Hex			24
+                Trespass			24
+                Shark Night 3D		        25
                 Kit Kittredge: An American Girl	26
-                Next Day Air 			              27
+                Next Day Air 			27
                 
 
 SELECT
@@ -72,16 +72,16 @@ SELECT
 4. Quais são os 10 filmes mais odiados pela crítica especializada?
 
                 Filme                         Nota da crítica
-                One Missed Call			          0
-                Paranormal Activity 2     		0
-                Something Borrowed	        	0
-                Daddy Day Camp		          	1
-                Disaster Movie		          	2
-                Epic Movie			              2
-                Meet the Spartans		          2
-                Good Luck Chuck		          	3
-                The Haunting of Molly Hartley	3
-                Abduction			                4
+                One Missed Call		      0
+                Paranormal Activity 2         0
+                Something Borrowed	      0
+                Daddy Day Camp		      1
+                Disaster Movie		      2
+                Epic Movie		      2
+                Meet the Spartans	      2
+                Good Luck Chuck		      3
+                The Haunting of Molly Hartley 3
+                Abduction		      4
                 
 
 SELECT
@@ -94,7 +94,7 @@ SELECT
 5. Qual filme com maior custo e qual filme com menor custo?
   
                 Filme               Custo
-                Greenberg		        0
+                Greenberg	    0
     
 2 códigos possíveis para menor custo:
 
@@ -118,7 +118,7 @@ SELECT
 
                 Filme com maior custo:
 
-                Filme                                     Custo
+                Filme                                           Custo
                 Pirates of the Caribbean: At World's End	300
                 
 SELECT 
@@ -221,10 +221,10 @@ SELECT -count (genero)-
               GENERO		TOTAL
               Comedy		172
               Action		154
-              Drama		  101
+              Drama		101
               Horror		49
-              Thriller	36
-              Adventure	29
+              Thriller		36
+              Adventure		29
               Romance		21
 
 SELECT genero, count(genero) as total
@@ -235,8 +235,8 @@ SELECT genero, count(genero) as total
 
 14. Qual gênero tem a mais alta média de custo?
 
-              GENERO  MÉDIA
-              Action	84.6299
+              GENERO  		MÉDIA
+              Action 		84.6299
 
 SELECT genero, AVG(custo)
 	FROM filmes 
@@ -246,7 +246,7 @@ SELECT genero, AVG(custo)
 15. Qual gênero tem a mais alta média de nota para o público?
 
               GÊNERO		MÉDIA
-              Thriller	65.5833
+              Thriller	        65.5833
 
 SELECT  genero, AVG(nota_especialistas) as Nota_Especialistas, AVG(nota_audiencia) as Nota_Público 
 	FROM filmes 
@@ -256,8 +256,8 @@ SELECT  genero, AVG(nota_especialistas) as Nota_Especialistas, AVG(nota_audienci
 
 16. Qual gênero tem a mais alta média de nota para a crítica especializada?
 
-              GÊNERO   MÉDIA
-              Thriller 59.0833
+              GÊNERO   		MÉDIA
+              Thriller 		59.0833
 
 SELECT  genero, AVG(nota_especialistas) as Nota_Especialistas, AVG(nota_audiencia) as Nota_Público 
 	FROM filmes 
@@ -294,7 +294,7 @@ SELECT  ano, count(ano) as TOTAL
 
 19. Qual gênero produziu mais filmes em um ano?
 
-              total   ano	  Gênero
+              total   	    ano	 	Gênero
               41	    2009	Comedy
               41	    2008	Comedy
 
@@ -305,8 +305,8 @@ SELECT  count(ano) as total, ano, genero
 
 20. Qual o filme mais amado pela audiência e pelos especialistas ao mesmo tempo?
 
-              Filmes			          Média
-              (500) Days of Summer 	84.0000
+              Filmes			        Média
+              (500) Days of Summer 		84.0000
               10,000 B.C.	        	26.5000
               12 Rounds 	        	41.0000
 
