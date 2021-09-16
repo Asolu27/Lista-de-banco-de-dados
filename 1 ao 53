@@ -1,3 +1,7 @@
+# Lista utilizando o BD Sakila, traduzido para português. Feito com MySQL.
+
+
+
 # 1. Quais os países cadastrados?
 SELECT * FROM PAIS;
 
