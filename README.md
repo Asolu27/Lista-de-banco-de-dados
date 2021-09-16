@@ -1,2 +1,2 @@
 # Lista-de-banco-de-dados
-Lista utilizando o BD Sakila, traduzido para português. Feito com MySQL.
+Repositório para listas de exercícios relacionados a SQL e banco de dados.
