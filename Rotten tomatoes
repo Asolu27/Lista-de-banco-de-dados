@@ -1,0 +1,315 @@
+# Perguntas respondidas para o curso "Introdução a Banco de Dados com MySQL" oferecido pela Udemy, baseadas na extração da base de dados do Rotten tomatoes, extraída da plataforma Kaggle.
+
+1. Quais são os 10 filmes mais apreciados pelo público?
+
+                Filme                 Nota do público
+                The Dark Knight		    96
+                50/50			            93
+                Inception		          93
+                Warrior		          	93
+                Avatar 		          	92
+                Iron Man	          	91
+                Star Trek 	        	91
+                The Artist	        	91
+                The Bourne Ultimatum	91
+                The Help		          91
+                Gran Torino	        	90
+                
+
+SELECT
+	id_filme, filme, nota_audiencia
+  FROM
+    filmes
+  ORDER BY
+    nota_audiencia DESC LIMIT 10
+  
+
+2. Quais são os 10 filmes mais apreciados pela crítica especializada?
+  
+                Filme                   Nota da crítica
+                The Artist		          97
+                The Hurt Locker 	      97
+                The Muppets		          97
+                True Grit		            96
+                Moneyball		            95
+                No Country for Old Men	95
+                An Education	        	94
+                Iron Man		            94
+                Juno			              94
+                Star Trek 	          	94
+                
+
+SELECT
+	id_filme, filme, nota_especialistas
+  FROM
+    filmes
+  ORDER BY
+    nota_especialistas DESC LIMIT 10
+
+3. Quais são os 10 filmes mais odiados pelo público?
+
+                Filme                           Nota do público
+                Paranormal Activity 2		         0
+                Something Borrowed		           0
+                Skyline				                  19
+                Stone			                    	20
+                The Haunting of Molly Hartley	  22
+                Jonah Hex			                  24
+                Trespass			                  24
+                Shark Night 3D		            	25
+                Kit Kittredge: An American Girl	26
+                Next Day Air 			              27
+                
+
+SELECT
+	id_filme, filme, nota_especialistas
+  FROM
+    filmes
+  ORDER BY
+    nota_especialistas DESC
+
+
+4. Quais são os 10 filmes mais odiados pela crítica especializada?
+
+                Filme                         Nota da crítica
+                One Missed Call			          0
+                Paranormal Activity 2     		0
+                Something Borrowed	        	0
+                Daddy Day Camp		          	1
+                Disaster Movie		          	2
+                Epic Movie			              2
+                Meet the Spartans		          2
+                Good Luck Chuck		          	3
+                The Haunting of Molly Hartley	3
+                Abduction			                4
+                
+
+SELECT
+	id_filme, filme, nota_especialistas
+  FROM
+    filmes
+  ORDER BY
+    nota_especialistas ASC
+
+5. Qual filme com maior custo e qual filme com menor custo?
+  
+                Filme               Custo
+                Greenberg		        0
+    
+2 códigos possíveis para menor custo:
+
+1: 
+
+SELECT
+	id_filme, filme, custo
+  FROM
+    filmes
+  ORDER BY
+    custo ASC LIMIT 1
+
+2:
+
+SELECT
+	id_filme, filme, custo
+  FROM
+    filmes
+  WHERE
+    custo = (SELECT MIN(custo) FROM filmes)
+
+                Filme com maior custo:
+
+                Filme                                     Custo
+                Pirates of the Caribbean: At World's End	300
+                
+SELECT 
+	id_filme, filme, custo
+  FROM
+    filmes
+  WHERE
+    custo = (SELECT max(custo) from filmes)
+
+6. Qual a média da nota da crítica especializada?
+
+            Média especialista: 47.4039
+
+SELECT
+	AVG(nota_especialistas) as 'Média especialista'
+  FROM
+    filmes;
+
+
+7. Qual a média da nota do público?
+
+            Média audiência: 58.8310
+
+SELECT
+	AVG(nota_audiencia) as 'Média audiência'
+  FROM
+    filmes;
+
+
+8. Qual a média de custo de filmes?
+
+            Média de custo: 50.1050
+
+
+SELECT
+	AVG(Custo) AS 'Média de custo'
+  FROM
+    filmes
+
+
+9. Quantos filmes custaram mais do que o custo médio dos filmes da tabela?
+
+            179 filmes
+
+SELECT count(*) as 'Filmes mais caros que a média'
+	FROM filmes
+	WHERE custo > (SELECT AVG(custo) from filmes)
+
+
+10. Quais são os filmes com nota acima da média das notas dadas pela crítica especializada?
+
+            Sâo 268 filmes
+
+SELECT count(*) as 'Filmes com nota acima da média dada pelos especialistas'
+	FROM filmes
+	WHERE nota_especialistas > (SELECT AVG(nota_especialistas) from filmes)
+
+
+11. Quais são os filmes com nota acima da média das notas dadas pelo público? Quais os melhores?
+
+            São 280 filmes. 
+
+SELECT count(*) as 'Filmes com nota acima da média dada pelo público'
+	FROM filmes
+	WHERE nota_audiencia > (SELECT AVG(nota_audiencia) from filmes)
+	ORDER BY nota_audiencia desc;
+  
+
+            Melhores:
+
+            The Dark Knight
+            50/50
+            Inception
+            Warrior
+            Avatar 
+
+SELECT *
+	FROM filmes
+	WHERE nota_audiencia > (SELECT AVG(nota_audiencia) from filmes)
+	ORDER BY nota_audiencia desc;
+
+
+
+12. Quais são os tipos de categoria (gêneros) existentes?
+
+            Comedy
+            Adventure
+            Action
+            Horror
+            Drama
+            Romance
+            Thriller
+
+SELECT -count (genero)-
+	FROM filmes
+	GROUP BY genero
+
+13. Quais são os gêneros com maior quantidade de filmes?
+
+              GENERO		TOTAL
+              Comedy		172
+              Action		154
+              Drama		  101
+              Horror		49
+              Thriller	36
+              Adventure	29
+              Romance		21
+
+SELECT genero, count(genero) as total
+	FROM filmes
+	GROUP BY genero
+	ORDER BY total desc
+
+
+14. Qual gênero tem a mais alta média de custo?
+
+              GENERO  MÉDIA
+              Action	84.6299
+
+SELECT genero, AVG(custo)
+	FROM filmes 
+    GROUP BY genero
+	ORDER BY AVG(custo) DESC;
+
+15. Qual gênero tem a mais alta média de nota para o público?
+
+              GÊNERO		MÉDIA
+              Thriller	65.5833
+
+SELECT  genero, AVG(nota_especialistas) as Nota_Especialistas, AVG(nota_audiencia) as Nota_Público 
+	FROM filmes 
+	GROUP BY genero 
+	ORDER BY Nota_Público DESC;
+
+
+16. Qual gênero tem a mais alta média de nota para a crítica especializada?
+
+              GÊNERO   MÉDIA
+              Thriller 59.0833
+
+SELECT  genero, AVG(nota_especialistas) as Nota_Especialistas, AVG(nota_audiencia) as Nota_Público 
+	FROM filmes 
+	GROUP BY genero 
+	ORDER BY Nota_Público DESC;
+
+
+17. Quantos filmes foram produzidos por ano?
+
+              ANO	QNTDE
+              2011	123
+              2010	119
+              2009	116
+              2008	125
+              2007	79
+
+SELECT  ano, count(ano)
+	FROM filmes
+	GROUP BY ano
+	ORDER BY ano desc
+
+
+
+18. Qual ano foram produzidos mais filmes?
+
+              ANO	TOTAL
+              2011	123
+
+SELECT  ano, count(ano) as TOTAL
+	FROM filmes
+	GROUP BY ano
+	ORDER BY TOTAL DESC limit 1
+
+
+19. Qual gênero produziu mais filmes em um ano?
+
+              total   ano	  Gênero
+              41	    2009	Comedy
+              41	    2008	Comedy
+
+SELECT  count(ano) as total, ano, genero
+	FROM filmes
+	GROUP BY ANO, GENERO
+	ORDER BY total desc
+
+20. Qual o filme mais amado pela audiência e pelos especialistas ao mesmo tempo?
+
+              Filmes			          Média
+              (500) Days of Summer 	84.0000
+              10,000 B.C.	        	26.5000
+              12 Rounds 	        	41.0000
+
+SELECT filme, (nota_especialistas + nota_audiencia)/2 as 'Média' 
+	FROM filmes 
+	ORDER BY 'Média' desc limit 3
